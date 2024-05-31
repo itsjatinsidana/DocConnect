@@ -5,10 +5,10 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
 # Copy the application JAR file into the container
-COPY target/docCONNECT-0.0.1-SNAPSHOT.jar app.jar
+COPY target/docCONNECT.jar
 
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
 
 # Run the jar file
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "docCONNECT.jar"]
