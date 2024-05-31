@@ -1,13 +1,17 @@
-
 FROM openjdk:8-jdk-alpine
-VOLUME /tmp
-ARG JAVA_OPTS
-ENV JAVA_OPTS=$JAVA_OPTS
-COPY target/docCONNECT-0.0.1-SNAPSHOT.jar docconnect.jar
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the JAR file from the host into the container
+COPY target/docCONNECT-0.0.1-SNAPSHOT.jar app.jar
+
+# Expose the port on which your application will run
 EXPOSE 5000
-ENTRYPOINT exec java $JAVA_OPTS -jar docconnect.jar
-# For Spring-Boot project, use the entrypoint below to reduce Tomcat startup time.
-#ENTRYPOINT exec java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar docconnect.jar
+
+# Define the command to run your application
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
 
 
 
