@@ -15,12 +15,12 @@ public class UserController {
 
     @GetMapping("/")
     public String home() {
-        return "home";
+        return "Home";
     }
 
     @GetMapping("/adminnav")
     public String adminNavf() {
-        return "/AdminNavbar.html";
+        return "AdminNavbar";
     }
 
     @GetMapping("/usersignup")
