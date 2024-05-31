@@ -15,7 +15,7 @@ public class UserController {
 
     @GetMapping("/")
     public String home() {
-        return "/home.html";
+        return "/home";
     }
 
     @GetMapping("/adminnav")
