@@ -1,16 +1,15 @@
-# # Use an official OpenJDK runtime as a parent image
-FROM openjdk:17-jdk-alpine
 
-# Set the working directory in the container
-WORKDIR /app
-
-# Copy the application JAR file into the container
-COPY target/docCONNECT.jar /app/docCONNECT.jar
-
-# Make port 5000 available to the world outside this container
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+ARG JAVA_OPTS
+ENV JAVA_OPTS=$JAVA_OPTS
+COPY target/docCONNECT-0.0.1-SNAPSHOT.jar docconnect.jar
 EXPOSE 5000
+ENTRYPOINT exec java $JAVA_OPTS -jar docconnect.jar
+# For Spring-Boot project, use the entrypoint below to reduce Tomcat startup time.
+#ENTRYPOINT exec java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar docconnect.jar
 
-# Run the jar file
-ENTRYPOINT ["java", "-jar", "/app/docCONNECT.jar"]
+
+
 
 
